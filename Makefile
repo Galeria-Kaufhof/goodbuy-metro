@@ -13,3 +13,6 @@ migration-via-diff:
 
 migrations:
 	php app/console doctrine:migrations:migrate
+
+test:
+	php ./vendor/phpunit/phpunit/phpunit
