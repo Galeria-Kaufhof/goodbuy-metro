@@ -1,0 +1,147 @@
+colors {
+    _Main: #348cb2;
+    _Accent: #144d66;
+    _Primary: #74c6e8;
+    _Secondary: #eb4313;
+    _Highlight: #b28626;
+    _Bam: #ffd466;
+}
+
+/* Space out content a bit */
+body {
+    padding-top: 68px;
+    background-color: #fff;
+    color: #144d66;
+    white-space: normal;
+    font-weight: 300;
+}
+
+a:focus {
+    outline: none;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin-top: 0;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+    margin-bottom: 20px;
+}
+
+h1, h2,
+.h1, .h2,
+b, strong,
+label {
+    font-weight: 700;
+}
+
+h3, h4, h5, h6,
+.h3, .h4, .h5, .h6 {
+    font-weight: 400;
+}
+
+/* Custom page header */
+header nav {
+    margin-bottom: 0;
+    background-color: #144d66;
+}
+
+header .wrapper {
+    border-bottom: 1px solid #0b2a38;
+}
+
+header a {
+    color: #fff;
+}
+
+header a.brand:hover,
+header a.brand:focus {
+    color: #fff;
+}
+
+.navbar {
+    margin: 0;
+    padding-top: 6px;
+    border-color: #348cb2;
+}
+
+.navbar-toggle {
+    margin-top: 12px;
+}
+
+.navbar-toggle,
+.btn-primary {
+    border-color: #0b2a38;
+    background-color: #144d66;
+}
+
+.navbar-toggle {
+    background-color: #348cb2;
+}
+
+.icon-bar {
+    background-color: #0b2a38;
+}
+
+header + main {
+    margin-top: 40px;
+}
+
+main {
+    padding: 0 0 48px;
+    min-height: 400px;
+}
+
+section {
+    padding: 40px 0;
+}
+
+section:empty {
+    display: none;
+}
+
+.brand {
+}
+
+/* Make the masthead heading the same height as the navigation */
+.messages {
+    margin-bottom: -20px;
+    padding-top: 0;
+    background-color: #fff;
+}
+
+#loggedin-info {
+    position: fixed;
+    top: 68px;
+    right: 0;
+    z-index: 1031;
+    padding: 0 4px 1px 7px;
+    border-radius: 0 0 0 7px;
+    background-color: #ddd;
+    color: #1b2024;
+    font-weight: 300;
+}
+
+.pagenav {
+    margin-bottom: 30px;
+}
+
+footer {
+    text-align: center;
+}
+
+/*Helpers*/
+.inline-block {
+    display: inline-block;
+}
+
+.clear {
+    clear: both;
+}
