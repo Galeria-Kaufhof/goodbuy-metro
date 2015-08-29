@@ -1,0 +1,6 @@
+imports:
+    - { resource: config_prod.yml }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
