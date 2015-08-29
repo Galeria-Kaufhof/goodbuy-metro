@@ -46,3 +46,13 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        # This works for a dev setup on Mac OS X with wkhtmltopdf installed
+        # using `brew install Caskroom/cask/wkhtmltopdf`
+        binary:     /usr/local/bin/wkhtmltopdf
+        options:    []
+    image:
+        enabled:    false
