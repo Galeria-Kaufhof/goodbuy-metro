@@ -2,6 +2,10 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PATH
 
+sudo rm -rf /opt/goodbye-metro/preprod
+sudo mkdir -p /opt/goodbye-metro/preprod
+sudo chown mkiessling:mkiessling /opt/goodbye-metro/preprod
+
 /usr/bin/rsync -ac --stats --exclude /opt/goodbye-metro/preprod/app/cache --exclude /opt/goodbye-metro/preprod/app/logs $2/ /opt/goodbye-metro/preprod/ || exit 1
 
 cp /opt/goodbye-metro/parameters.preprod.yml /opt/goodbye-metro/preprod/app/config/parameters.yml || exit 1
@@ -10,12 +14,13 @@ cd /opt/goodbye-metro/preprod/
 /usr/bin/php /usr/bin/composer install --no-interaction --no-progress --quiet --no-ansi || exit 1
 /usr/local/bin/bower install || exit 1
 
+rm -rf /opt/goodbye-metro/preprod/app/cache/preprod || exit 1
+rm -f /opt/goodbye-metro/preprod/app/logs/preprod.log || exit 1
+
+chmod 0777 /opt/goodbye-metro/preprod/app/cache
+chmod 0777 /opt/goodbye-metro/preprod/app/logs
+
 sudo -u www-data /usr/bin/php ./app/console cache:clear --env=preprod || exit 1
 sudo -u www-data /usr/bin/php ./app/console doctrine:migrations:migrate --no-interaction --env=preprod || exit 1
 /usr/bin/php ./app/console assets:install --no-interaction --env=preprod || exit 1
 /usr/bin/php ./vendor/phpunit/phpunit/phpunit || exit 1
-
-rm -rf /opt/goodbye-metro/preprod/app/cache/preprod || exit 1
-rm -rf /opt/goodbye-metro/preprod/app/logs/preprod.log || exit 1
-chmod 0777 /opt/goodbye-metro/preprod/app/cache || exit 1
-chmod 0777 /opt/goodbye-metro/preprod/app/logs || exit 1
