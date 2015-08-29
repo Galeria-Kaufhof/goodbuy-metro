@@ -16,6 +16,9 @@ class Customer
     const SALESDIVISION_METRO_SATURN = 1;
     const SALESDIVISION_REAL = 2;
 
+    const GREETING_MRS = 0;
+    const GREETING_MR = 1;
+
     /**
      * @var integer
      *
@@ -31,6 +34,13 @@ class Customer
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="greeting", type="integer")
+     */
+    private $greeting;
 
     /**
      * @var string
@@ -244,5 +254,28 @@ class Customer
     public function getSalesdivision()
     {
         return $this->salesdivision;
+    }
+
+    /**
+     * Set greeting
+     *
+     * @param integer $greeting
+     * @return Customer
+     */
+    public function setGreeting($greeting)
+    {
+        $this->greeting = $greeting;
+
+        return $this;
+    }
+
+    /**
+     * Get greeting
+     *
+     * @return integer 
+     */
+    public function getGreeting()
+    {
+        return $this->greeting;
     }
 }
