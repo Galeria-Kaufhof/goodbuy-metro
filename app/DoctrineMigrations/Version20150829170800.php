@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20150829164636 extends AbstractMigration
+class Version20150829170800 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,8 @@ class Version20150829164636 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE customer ADD greeting INT NOT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_81398E09BFA1DBC1 ON customer (employee_number)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_81398E09FA574C9A ON customer (activation_code)');
     }
 
     /**
@@ -29,6 +30,7 @@ class Version20150829164636 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE customer DROP greeting');
+        $this->addSql('DROP INDEX UNIQ_81398E09BFA1DBC1 ON customer');
+        $this->addSql('DROP INDEX UNIQ_81398E09FA574C9A ON customer');
     }
 }

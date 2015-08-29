@@ -31,7 +31,7 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
 
@@ -59,7 +59,7 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="employee_number", type="string", length=32)
+     * @ORM\Column(name="employee_number", type="string", length=32, unique=true)
      */
     private $employeeNumber;
 
@@ -73,7 +73,7 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="activation_code", type="string", length=40)
+     * @ORM\Column(name="activation_code", type="string", length=40, unique=true)
      */
     private $activationCode;
 
