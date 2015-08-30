@@ -2,22 +2,45 @@
 
 namespace AppBundle\Tests\Functional;
 
+use AppBundle\Entity\Customer;
 use AppBundle\Tests\TestHelpers;
 use PHPQRCode\QRcode;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CouponTest extends WebTestCase
 {
-    public function testIndexWithCorrectHash()
+    use TestHelpers;
+
+    public function testIndexWithExistingAndActivatedCustomerAndCorrectHash()
     {
         $client = static::createClient();
-        $kernel = $client->getKernel();
-        $secret = $kernel->getContainer()->getParameter('secret');
 
-        $crawler = $client->request('GET', '/customer/123/coupons?hash=' . sha1($secret . '123'));
+        $this->resetDatabase();
+
+        static::$kernel = static::createKernel();
+        static::$kernel->boot();
+        $em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+        $customer = new Customer();
+        $customer->setEmail('example@example.org');
+        $customer->setActivationCode('abc');
+        $customer->setEmployeeNumber('1234567890');
+        $customer->setSalesdivision(Customer::SALESDIVISION_METRO_SATURN);
+        $customer->setIsActivated(true);
+        $em->persist($customer);
+        $em->flush();
+
+        $secret = static::$kernel->getContainer()->getParameter('secret');
+
+        $crawler = $client->request(
+            'GET',
+            '/customer/' . $customer->getId() . '/coupons?hash=' . sha1($secret . $customer->getId())
+        );
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('I am the coupon document for 123', $crawler->filter('body')->text());
+        $this->assertContains('I am the coupon document for ' . $customer->getId(), $crawler->filter('body')->text());
     }
 
     public function testIndexWithWrongHash()

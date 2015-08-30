@@ -20,6 +20,9 @@ trait TestHelpers
         $input = new ArgvInput(['', 'doctrine:database:drop', '--no-interaction', '--force', '-q']);
         $application->run($input);
 
+        $input = new ArgvInput(['', 'doctrine:database:create', '--no-interaction', '-q']);
+        $application->run($input);
+
         $output = new ConsoleOutput();
         $input = new ArgvInput(['', 'doctrine:migrations:migrate', '--no-interaction', '-q']);
         $application->run($input, $output);
