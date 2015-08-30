@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Customer
 {
     const SALESDIVISION_CASH_CARRY = 0;
-    const SALESDIVISION_METRO_SATURN = 1;
+    const SALESDIVISION_MEDIAMARKT_SATURN = 1;
     const SALESDIVISION_REAL = 2;
 
     const GREETING_MRS = 0;

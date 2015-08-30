@@ -6,6 +6,11 @@
     <div class="row">
         <div class="col-xs-12 col-md-6">
             Hello World
+
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
         </div>
     </div>
 </section>

@@ -27,7 +27,7 @@ class CouponTest extends WebTestCase
         $customer->setEmail('example@example.org');
         $customer->setActivationCode('abc');
         $customer->setEmployeeNumber('1234567890');
-        $customer->setSalesdivision(Customer::SALESDIVISION_METRO_SATURN);
+        $customer->setSalesdivision(Customer::SALESDIVISION_MEDIAMARKT_SATURN);
         $customer->setIsActivated(true);
         $em->persist($customer);
         $em->flush();
