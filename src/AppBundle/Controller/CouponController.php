@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CouponController extends Controller
 {
@@ -20,7 +21,7 @@ class CouponController extends Controller
         $secret = $this->getParameter('secret');
         $hash = $request->query->get('hash');
         if ($hash !== sha1($secret . $customerId)) {
-            throw $this->createAccessDeniedException('Zugriff abgelehnt.');
+            throw new HttpException(403, 'Zugriff verweigert.');
         }
 
         return $this->render(
@@ -38,7 +39,7 @@ class CouponController extends Controller
         $secret = $this->getParameter('secret');
         $hash = $request->query->get('hash');
         if ($hash !== sha1($secret . $couponcode)) {
-            throw $this->createAccessDeniedException('Zugriff abgelehnt.');
+            throw new HttpException(403, 'Zugriff verweigert.');
         }
 
         ob_start();

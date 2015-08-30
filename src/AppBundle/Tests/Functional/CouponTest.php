@@ -24,14 +24,14 @@ class CouponTest extends WebTestCase
     {
         $client = static::createClient();
         $client->request('GET', '/customer/123/coupons?hash=' . sha1('foo' . '123'));
-        $this->assertEquals(500, $client->getResponse()->getStatusCode());
+        $this->assertEquals(403, $client->getResponse()->getStatusCode());
     }
 
     public function testIndexWithoutHash()
     {
         $client = static::createClient();
         $client->request('GET', '/customer/123/coupons');
-        $this->assertEquals(500, $client->getResponse()->getStatusCode());
+        $this->assertEquals(403, $client->getResponse()->getStatusCode());
     }
 
     /**
@@ -54,5 +54,16 @@ class CouponTest extends WebTestCase
         ob_clean();
 
         $this->assertSame($image, $client->getResponse()->getContent());
+    }
+
+    public function testQrCodeWithWrongHash()
+    {
+        $client = static::createClient();
+        $kernel = $client->getKernel();
+        $secret = $kernel->getContainer()->getParameter('secret');
+
+        $client->request('GET', '/qrcode/12894389.png?hash=' . sha1($secret . '1289438'));
+
+        $this->assertEquals(403, $client->getResponse()->getStatusCode());
     }
 }
