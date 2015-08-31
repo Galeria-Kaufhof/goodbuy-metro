@@ -50,6 +50,9 @@ class DefaultController extends Controller
             ;
             $this->get('mailer')->send($message);
 
+            return $this->render(
+                'AppBundle:default:thankyou.html.twig'
+            );
         }
 
         return $this->render(
