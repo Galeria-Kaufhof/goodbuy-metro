@@ -99,11 +99,22 @@ class DefaultController extends Controller
             );
         }
 
+        $mapped = $this->get('couponmapper')->mapNToCustomer(6, $customer);
+
+        if (!$mapped) {
+            $this->addFlash(
+                'error',
+                'Es ist ein interner Fehler aufgetreten - bitte versuchen Sie es später erneut.'
+            );
+            return $this->render(
+                'AppBundle:default:confirm.html.twig',
+                [],
+                new Response(null, 503)
+            );
+        }
+
         $customer->setIsActivated(true);
         $em->flush();
-
-        $this->get('couponmapper')->mapNToCustomer(6, $customer);
-        //@TODO Handle error case
 
         $couponcodesData = [];
         foreach ($customer->getCouponcodes() as $couponcode) {
