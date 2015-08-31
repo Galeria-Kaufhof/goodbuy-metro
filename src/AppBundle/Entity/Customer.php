@@ -84,6 +84,13 @@ class Customer
      */
     private $salesdivision;
 
+    /**
+     * @var ArrayCollection|Couponcodes[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Couponcode", mappedBy="customer",fetch="EXTRA_LAZY")
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    private $couponcodes;
+
 
     /**
      * Get id
@@ -277,5 +284,45 @@ class Customer
     public function getGreeting()
     {
         return $this->greeting;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->couponcodes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add couponcodes
+     *
+     * @param \AppBundle\Entity\Couponcode $couponcodes
+     * @return Customer
+     */
+    public function addCouponcode(\AppBundle\Entity\Couponcode $couponcodes)
+    {
+        $this->couponcodes[] = $couponcodes;
+
+        return $this;
+    }
+
+    /**
+     * Remove couponcodes
+     *
+     * @param \AppBundle\Entity\Couponcode $couponcodes
+     */
+    public function removeCouponcode(\AppBundle\Entity\Couponcode $couponcodes)
+    {
+        $this->couponcodes->removeElement($couponcodes);
+    }
+
+    /**
+     * Get couponcodes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCouponcodes()
+    {
+        return $this->couponcodes;
     }
 }
