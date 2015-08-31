@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class CouponController extends Controller
 {
     /**
-     * @Route("/customer/{customerId}/coupons", requirements={"id" = "\d+"}, name="coupons")
+     * @Route("/customer/{customerId}/coupons", requirements={"customerId" = "\d+"}, name="coupons")
      * @Method({"GET"})
      */
     public function indexAction($customerId, Request $request)

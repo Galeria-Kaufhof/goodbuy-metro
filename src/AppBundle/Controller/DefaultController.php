@@ -38,20 +38,12 @@ class DefaultController extends Controller
                 ->setBody(
                     $this->renderView(
                         'Emails/activateRegistration.html.twig',
-                        array('activationCode' => $customer->getActivationCode())
+                        [
+                            'customer' => $customer
+                        ]
                     ),
                     'text/html'
                 )
-                /*
-                 * If you also want to include a plaintext version of the message
-                ->addPart(
-                    $this->renderView(
-                        'Emails/registration.txt.twig',
-                        array('name' => $name)
-                    ),
-                    'text/plain'
-                )
-                */
             ;
             $this->get('mailer')->send($message);
 
@@ -62,6 +54,40 @@ class DefaultController extends Controller
             [
                 'form' => $form->createView()
             ]
+        );
+    }
+
+    /**
+     * @Route("/customer/{customerId}/confirmation/{activationCode}", requirements={"customerId" = "\d+"}, name="confirm")
+     * @Method({"GET"})
+     */
+    public function confirmAction($customerId, $activationCode)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('AppBundle\Entity\Customer');
+
+        $customer = $repo->find($customerId);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Ihre Rabattcodes für die Good Bye Metro Sonderaktion')
+            ->setFrom('goodbye-metro@kaufhof.de')
+            ->setTo($customer->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'Emails/couponCodes.html.twig',
+                    [
+                        'customer' => $customer
+                    ]
+                ),
+                'text/html'
+            )
+        ;
+        $this->get('mailer')->send($message);
+
+        $this->addFlash('success', 'Vielen Dank, Ihre Freischaltung war erfolgreich. Sie erhalten nun eine E-Mail mit Ihren persönlichen Rabattcodes.');
+
+        return $this->render(
+            'AppBundle:default:confirm.html.twig'
         );
     }
 }
