@@ -69,34 +69,17 @@ header a.brand:focus {
 .navbar {
     margin: 0;
     padding-top: 6px;
-    border-color: #348cb2;
 }
 
 .navbar-toggle {
     margin-top: 12px;
 }
 
-.navbar-toggle,
-.btn-primary {
-    border-color: #0b2a38;
-    background-color: #144d66;
-}
-
-.navbar-toggle {
-    background-color: #348cb2;
-}
-
-.icon-bar {
-    background-color: #0b2a38;
-}
-
 header + main {
-    margin-top: 40px;
+    margin-top: 0;
 }
 
 main {
-    padding: 0 0 48px;
-    min-height: 400px;
 }
 
 section {
@@ -107,7 +90,18 @@ section:empty {
     display: none;
 }
 
-.brand {
+label {
+    display: block;
+    margin-top: 24px;
+    margin-bottom: 0;
+}
+
+input {
+    width: 300px;
+}
+
+button {
+    margin-top: 24px;
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -115,22 +109,6 @@ section:empty {
     margin-bottom: -20px;
     padding-top: 0;
     background-color: #fff;
-}
-
-#loggedin-info {
-    position: fixed;
-    top: 68px;
-    right: 0;
-    z-index: 1031;
-    padding: 0 4px 1px 7px;
-    border-radius: 0 0 0 7px;
-    background-color: #ddd;
-    color: #1b2024;
-    font-weight: 300;
-}
-
-.pagenav {
-    margin-bottom: 30px;
 }
 
 footer {

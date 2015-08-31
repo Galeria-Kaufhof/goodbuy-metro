@@ -18,14 +18,15 @@ class RegistrationType extends AbstractType
                 [
                     'choices' => [
                         Customer::GREETING_MRS => 'Frau',
-                        Customer::GREETING_MRS => 'Herr'
+                        Customer::GREETING_MR => 'Herr'
                     ],
                     'required' => false,
+                    'label' => 'Anrede:'
                 ])
             ->add('firstname',      'text',  ['label' => 'Vorname:', 'required' => false])
             ->add('lastname',       'text',  ['label' => 'Nachname:', 'required' => false])
             ->add('address',        'text',  ['label' => 'Straße und Hausnummer:', 'required' => false])
-            ->add('zipcode',        'text',  ['label' => 'PLZ:', 'required' => false])
+            ->add('zipcode',        'text',  ['label' => 'PLZ:', 'max_length' => 5, 'required' => false])
             ->add('city',           'text',  ['label' => 'Ort:', 'required' => false])
             ->add('email',          'email', ['label' => 'E-Mail Adresse:', 'required' => true])
             ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer:', 'required' => true])
