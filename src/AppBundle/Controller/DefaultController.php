@@ -87,6 +87,18 @@ class DefaultController extends Controller
             );
         }
 
+        if ($customer->getIsActivated() === true) {
+            $this->addFlash(
+                'error',
+                'Eine erneute Freischaltung ist nicht möglich!'
+            );
+            return $this->render(
+                'AppBundle:default:confirm.html.twig',
+                [],
+                new Response(null, 410)
+            );
+        }
+
         $customer->setIsActivated(true);
         $em->flush();
 
