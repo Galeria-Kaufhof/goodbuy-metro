@@ -12,8 +12,23 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email',          'email', ['label' => 'E-Mail Adresse:'])
-            ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer:'])
+            ->add(
+                'greeting',
+                'choice',
+                [
+                    'choices' => [
+                        Customer::GREETING_MRS => 'Frau',
+                        Customer::GREETING_MRS => 'Herr'
+                    ],
+                    'required' => false,
+                ])
+            ->add('firstname',      'text',  ['label' => 'Vorname:', 'required' => false])
+            ->add('lastname',       'text',  ['label' => 'Nachname:', 'required' => false])
+            ->add('address',        'text',  ['label' => 'Straße und Hausnummer:', 'required' => false])
+            ->add('zipcode',        'text',  ['label' => 'PLZ:', 'required' => false])
+            ->add('city',           'text',  ['label' => 'Ort:', 'required' => false])
+            ->add('email',          'email', ['label' => 'E-Mail Adresse:', 'required' => true])
+            ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer:', 'required' => true])
             ->add(
                 'salesdivision',
                 'choice',
@@ -25,7 +40,7 @@ class RegistrationType extends AbstractType
                     ],
                     'required' => true,
                     'multiple' => false,
-                    'label'    => 'Ihre Vertriebslinie'
+                    'label'    => 'Ihre Vertriebslinie:'
                 ])
             ->add('Save', 'submit', ['label' => 'Absenden', 'attr' => ['class' => 'btn-primary']]);
     }
