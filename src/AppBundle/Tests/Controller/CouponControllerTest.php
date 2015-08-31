@@ -67,7 +67,7 @@ class CouponControllerTest extends WebTestCase
         );
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('I am the coupon document for ' . $customer->getId(), $crawler->filter('body')->text());
+        $this->assertContains('Mitarbeiternummer: 1234567890', $crawler->filter('body')->text());
     }
 
     public function testIndexWithNonExistantCustomer()
@@ -120,22 +120,5 @@ class CouponControllerTest extends WebTestCase
         $client->request('GET', '/qrcode/9850012501010470001010009160cZjike0TCb7hv0c__0000000000000000002.png?hash=' . sha1($secret . '12345'));
 
         $this->assertEquals(403, $client->getResponse()->getStatusCode());
-    }
-
-    public function testQrCodeWithOverride()
-    {
-        $client = static::createClient();
-
-        $client->request('GET', '/qrcode/9850012501010470001010009160cZjike0TCb7hv0c__0000000000000000002.png?override=264d6d73ecde4b9e50ca654e8bf6b7978141dec5');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertEquals('image/png', $client->getResponse()->headers->get('Content-Type'));
-
-        ob_start();
-        @QRcode::png('9850012501010470001010009160cZjike0TCb7hv0c__0000000000000000002');
-        $image = ob_get_contents();
-        ob_end_clean();
-
-        $this->assertSame($image, $client->getResponse()->getContent());
     }
 }

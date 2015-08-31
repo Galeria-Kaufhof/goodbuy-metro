@@ -60,8 +60,7 @@ class CouponController extends Controller
     {
         $secret = $this->getParameter('secret');
         $hash = $request->query->get('hash');
-        $override = $request->query->get('override');
-        if ($hash !== sha1($secret . $couponcode) && $override !== '264d6d73ecde4b9e50ca654e8bf6b7978141dec5') {
+        if ($hash !== sha1($secret . $couponcode)) {
             throw new HttpException(403, 'Zugriff verweigert.');
         }
 
