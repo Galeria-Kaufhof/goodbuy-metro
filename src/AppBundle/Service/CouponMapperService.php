@@ -57,8 +57,17 @@ class CouponMapperService
                 }
 
                 $couponcode->setCustomer($customer);
-                $this->em->persist($couponcode);
 
+                if (strlen($couponcode->getCode()) === 64) {
+                    $code = $couponcode->getCode();
+                    $newCode = substr($code, 0, 45);
+                    $newCode .= str_pad(substr($customer->getEmployeeNumber(), 0, 17), 17, '_');
+                    $newCode .= $customer->getSalesdivision();
+                    $newCode .= substr($code, -1, 1);
+                    $couponcode->setCode($newCode);
+                }
+
+                $this->em->persist($couponcode);
                 $this->em->flush();
             }
             $this->em->getConnection()->commit();
