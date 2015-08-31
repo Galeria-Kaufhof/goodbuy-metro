@@ -86,6 +86,15 @@ class DefaultController extends Controller
         $customer->setIsActivated(true);
         $em->flush();
 
+        $pdfData = $this->get('knp_snappy.pdf')->getOutputFromHtml(
+            $this->renderView(
+                'AppBundle:coupons:index.html.twig',
+                array(
+                    'customerId' => 12345
+                )
+            )
+        );
+
         $message = \Swift_Message::newInstance()
             ->setSubject('Ihre Rabattcodes für die Good Bye Metro Sonderaktion')
             ->setFrom('goodbye-metro@kaufhof.de')
@@ -99,7 +108,8 @@ class DefaultController extends Controller
                 ),
                 'text/html'
             )
-        ;
+            ->attach(\Swift_Attachment::newInstance($pdfData, 'Goodbye-Metro-Rabattcodes.pdf', 'application/pdf'));
+
         $this->get('mailer')->send($message);
 
         $this->addFlash(
