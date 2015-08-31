@@ -43,7 +43,7 @@ class RegistrationType extends AbstractType
                     'multiple' => false,
                     'label'    => 'Ihre Vertriebslinie:'
                 ])
-            ->add('Save', 'submit', ['label' => 'Absenden', 'attr' => ['class' => 'btn-primary']]);
+            ->add('Save', 'submit', ['label' => 'Absenden', 'attr' => ['class' => 'btn btn-primary']]);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

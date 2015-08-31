@@ -50,11 +50,11 @@ h3, h4, h5, h6,
 /* Custom page header */
 header nav {
     margin-bottom: 0;
-    background-color: #144d66;
+    background-color: #fff;
 }
 
 header .wrapper {
-    border-bottom: 1px solid #0b2a38;
+    border-bottom: 1px solid #8FC840;
 }
 
 header a {
