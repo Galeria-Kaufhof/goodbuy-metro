@@ -24,7 +24,7 @@ class CouponMapperServiceTest extends WebTestCase
         $customer->setIsActivated(true);
         $customer->setActivationCode('abc');
         $customer->setEmail('example@example.org');
-        $customer->setEmployeeNumber('12345');
+        $customer->setEmployeeNumber('12`345-é_ok#2©');
         $customer->setSalesdivision(Customer::SALESDIVISION_MEDIAMARKT_SATURN);
         $em->persist($customer);
 
@@ -55,12 +55,12 @@ class CouponMapperServiceTest extends WebTestCase
         $cRepo = $em->getRepository('AppBundle\Entity\Customer');
         $customer = $cRepo->find(1);
         $codes = $customer->getCouponCodes()->getValues();
-        $this->assertSame('3850012501010470001010009160cZjike0TCb7hv0c__12345____________12', $codes[0]->getCode());
-        $this->assertSame('2850012501010470001010009160cZjike0TCb7hv0c__12345____________12', $codes[1]->getCode());
-        $this->assertSame('1850012501010470001010009160cZjike0TCb7hv0c__12345____________12', $codes[2]->getCode());
+        $this->assertSame('3850012501010470001010009160cZjike0TCb7hv0c__12345-ok2________12', $codes[0]->getCode());
+        $this->assertSame('2850012501010470001010009160cZjike0TCb7hv0c__12345-ok2________12', $codes[1]->getCode());
+        $this->assertSame('1850012501010470001010009160cZjike0TCb7hv0c__12345-ok2________12', $codes[2]->getCode());
         $this->assertSame(3, sizeof($codes));
 
-        $customer->setEmployeeNumber('1234567890abcdefghij');
+        $customer->setEmployeeNumber('123`456ö7890abcdefghij*');
         $m = new CouponMapperService($em);
         $m->mapNToCustomer(1, $customer);
 
@@ -70,14 +70,14 @@ class CouponMapperServiceTest extends WebTestCase
         $customer = $cRepo->find(1);
         $codes = $customer->getCouponCodes()->getValues();
         $this->assertSame('4850012501010470001010009160cZjike0TCb7hv0c__1234567890abcdefg12', $codes[0]->getCode());
-        $this->assertSame('3850012501010470001010009160cZjike0TCb7hv0c__12345____________12', $codes[1]->getCode());
-        $this->assertSame('2850012501010470001010009160cZjike0TCb7hv0c__12345____________12', $codes[2]->getCode());
-        $this->assertSame('1850012501010470001010009160cZjike0TCb7hv0c__12345____________12', $codes[3]->getCode());
+        $this->assertSame('3850012501010470001010009160cZjike0TCb7hv0c__12345-ok2________12', $codes[1]->getCode());
+        $this->assertSame('2850012501010470001010009160cZjike0TCb7hv0c__12345-ok2________12', $codes[2]->getCode());
+        $this->assertSame('1850012501010470001010009160cZjike0TCb7hv0c__12345-ok2________12', $codes[3]->getCode());
         $this->assertSame(4, sizeof($codes));
 
         $ccRepo = $em->getRepository('AppBundle\Entity\Couponcode');
         $couponcode = $ccRepo->find(1);
-        $this->assertSame('1850012501010470001010009160cZjike0TCb7hv0c__12345____________12', $couponcode->getCode());
+        $this->assertSame('1850012501010470001010009160cZjike0TCb7hv0c__12345-ok2________12', $couponcode->getCode());
     }
 
     public function testMappingFailsIfNotEnoughFreeCodes()
