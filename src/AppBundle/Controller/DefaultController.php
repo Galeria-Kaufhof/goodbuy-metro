@@ -24,9 +24,37 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->addFlash('success', 'Vielen Dank. Sie erhalten nun eine Aktivierungsmail.');
-
             $customer = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $repo = $em->getRepository('AppBundle\Entity\Customer');
+
+            $existingCustomer = $repo->findOneBy(['email' => $customer->getEmail()]);
+            if (!empty($existingCustomer)) {
+                $this->addFlash(
+                    'error',
+                    'Diese E-Mail Adresse kann nicht erneut für eine Registrierung verwendet werden.'
+                );
+                return $this->render(
+                    'AppBundle:default:index.html.twig',
+                    ['form' => $form->createView()],
+                    new Response(null, 403)
+                );
+            }
+
+            $existingCustomer = $repo->findOneBy(['employeeNumber' => $customer->getEmployeeNumber()]);
+            if (!empty($existingCustomer)) {
+                $this->addFlash(
+                    'error',
+                    'Diese Mitarbeiternummer kann nicht erneut für eine Registrierung verwendet werden.'
+                );
+                return $this->render(
+                    'AppBundle:default:index.html.twig',
+                    ['form' => $form->createView()],
+                    new Response(null, 403)
+                );
+            }
+
             $customer->setIsActivated(false);
             $secret = $this->getParameter('secret');
             $customer->setActivationCode(sha1($secret . $customer->getEmail()));
@@ -51,6 +79,7 @@ class DefaultController extends Controller
             ;
             $this->get('mailer')->send($message);
 
+            $this->addFlash('success', 'Vielen Dank. Sie erhalten nun eine Aktivierungsmail.');
             return $this->render(
                 'AppBundle:default:thankyou.html.twig'
             );
