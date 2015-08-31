@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -68,6 +71,21 @@ class DefaultController extends Controller
 
         $customer = $repo->find($customerId);
 
+        if (empty($customer) || $customer->getActivationCode() !== $activationCode) {
+            $this->addFlash(
+                'error',
+                'Dieser Aktivierungslink ist leider ungültig.'
+            );
+            return $this->render(
+                'AppBundle:default:confirm.html.twig',
+                [],
+                new Response(null, 403)
+            );
+        }
+
+        $customer->setIsActivated(true);
+        $em->flush();
+
         $message = \Swift_Message::newInstance()
             ->setSubject('Ihre Rabattcodes für die Good Bye Metro Sonderaktion')
             ->setFrom('goodbye-metro@kaufhof.de')
@@ -84,7 +102,10 @@ class DefaultController extends Controller
         ;
         $this->get('mailer')->send($message);
 
-        $this->addFlash('success', 'Vielen Dank, Ihre Freischaltung war erfolgreich. Sie erhalten nun eine E-Mail mit Ihren persönlichen Rabattcodes.');
+        $this->addFlash(
+            'success',
+            'Vielen Dank, Ihre Freischaltung war erfolgreich. Sie erhalten nun eine E-Mail mit Ihren persönlichen Rabattcodes.'
+        );
 
         return $this->render(
             'AppBundle:default:confirm.html.twig'
