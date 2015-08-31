@@ -1,0 +1,5 @@
+services:
+    couponmapper:
+        class: AppBundle\Service\CouponMapperService
+        arguments:
+            - @doctrine.orm.entity_manager

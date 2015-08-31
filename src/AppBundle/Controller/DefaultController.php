@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\RegistrationType;
+use PHPQRCode\QRcode;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -89,11 +90,25 @@ class DefaultController extends Controller
         $customer->setIsActivated(true);
         $em->flush();
 
+        $this->get('couponmapper')->mapNToCustomer(6, $customer);
+        //@TODO Handle error case
+
+        $couponcodesData = [];
+        foreach ($customer->getCouponcodes() as $couponcode) {
+            ob_clean();
+            ob_start();
+            @QRcode::png($couponcode->getCode());
+            $imageData = ob_get_contents();
+            ob_end_clean();
+            $couponcodesData[] = base64_encode($imageData);
+        }
+
         $pdfData = $this->get('knp_snappy.pdf')->getOutputFromHtml(
             $this->renderView(
                 'AppBundle:coupons:index.html.twig',
                 array(
-                    'customerId' => 12345
+                    'customer' => $customer,
+                    'couponcodesData' => $couponcodesData
                 )
             )
         );

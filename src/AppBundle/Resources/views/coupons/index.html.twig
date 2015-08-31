@@ -1,5 +1,13 @@
 <html>
 <body>
-I am the coupon document for {{ customerId }}
+<p>
+I am the coupon document for {{ customer.id }}
+</p>
+
+{% for couponcodeData in couponcodesData %}
+    <p>
+        <img src="data:image/png;base64,{{ couponcodeData }}"/>
+    </p>
+{% endfor %}
 </body>
 </html>

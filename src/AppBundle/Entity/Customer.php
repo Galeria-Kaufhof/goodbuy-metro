@@ -86,7 +86,7 @@ class Customer
 
     /**
      * @var ArrayCollection|Couponcodes[]
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Couponcode", mappedBy="customer",fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Couponcode", mappedBy="customer")
      * @ORM\OrderBy({"id" = "DESC"})
      */
     private $couponcodes;
@@ -319,7 +319,7 @@ class Customer
     /**
      * Get couponcodes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCouponcodes()
     {
