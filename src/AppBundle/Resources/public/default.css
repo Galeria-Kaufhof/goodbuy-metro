@@ -1,13 +1,3 @@
-colors {
-    _Main: #348cb2;
-    _Accent: #144d66;
-    _Primary: #74c6e8;
-    _Secondary: #eb4313;
-    _Highlight: #b28626;
-    _Bam: #ffd466;
-}
-
-/* Space out content a bit */
 body {
     padding-top: 68px;
     background-color: #fff;
