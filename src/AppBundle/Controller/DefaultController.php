@@ -33,7 +33,7 @@ class DefaultController extends Controller
                 return $this->render(
                     'AppBundle:default:index.html.twig',
                     ['form' => $form->createView()],
-                    new Response(null, 400)
+                    new Response(null, 422)
                 );
             }
 
@@ -106,7 +106,7 @@ class DefaultController extends Controller
             return $this->render(
                 'AppBundle:default:index.html.twig',
                 ['form' => $form->createView()],
-                new Response(null, 400)
+                new Response(null, 422)
             );
         }
 
