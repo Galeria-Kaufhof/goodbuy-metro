@@ -98,6 +98,18 @@ class DefaultController extends Controller
             );
         }
 
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash(
+                'error',
+                'Das Formular ist nicht korrekt ausgefüllt.'
+            );
+            return $this->render(
+                'AppBundle:default:index.html.twig',
+                ['form' => $form->createView()],
+                new Response(null, 400)
+            );
+        }
+
         return $this->render(
             'AppBundle:default:index.html.twig',
             [

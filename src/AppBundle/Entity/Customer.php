@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,7 +31,8 @@ class Customer
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
@@ -45,6 +47,7 @@ class Customer
     /**
      * @var string
      *
+     * @Assert\Regex("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u", message = "Die Angabe des Vornamens enthält ungültige Zeichen.")
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      */
     private $firstname;
@@ -52,6 +55,7 @@ class Customer
     /**
      * @var string
      *
+     * @Assert\Regex("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u", message = "Die Angabe des Nachnamens enthält ungültige Zeichen.")
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     private $lastname;
@@ -59,6 +63,7 @@ class Customer
     /**
      * @var string
      *
+     * @Assert\Regex("/^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u", message = "Die Angabe zu Straße und Hausnummer enthält ungültige Zeichen.")
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
@@ -66,6 +71,7 @@ class Customer
     /**
      * @var string
      *
+     * @Assert\Regex("/^[0-9]{5}$/", message = "Die Angabe zur Postleitzahl enthält ungültige Zeichen.")
      * @ORM\Column(name="zipcode", type="string", length=5, nullable=true)
      */
     private $zipcode;
@@ -73,6 +79,7 @@ class Customer
     /**
      * @var string
      *
+     * @Assert\Regex("/^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u", message = "Die Angabe zur Stadt enthält ungültige Zeichen.")
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
