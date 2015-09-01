@@ -194,6 +194,9 @@ class DefaultController extends Controller
             file_put_contents('/var/tmp/coupon.pdf', $pdfData);
         }
 
+        $fileLocator = $this->get('file_locator');
+        $brandsPdfPath = $fileLocator->locate('@AppBundle/Resources/other/Marken_Selbst_Vertragspartner_2015_09_24.pdf');
+
         $message = \Swift_Message::newInstance()
             ->setSubject('Ihre Rabattcodes für die Good Bye Metro Sonderaktion')
             ->setFrom('goodbye-metro@kaufhof.de')
@@ -207,7 +210,8 @@ class DefaultController extends Controller
                 ),
                 'text/html'
             )
-            ->attach(\Swift_Attachment::newInstance($pdfData, 'Goodbye-Metro-Rabattcodes.pdf', 'application/pdf'));
+            ->attach(\Swift_Attachment::newInstance($pdfData, 'Goodbye-Metro-Rabattcodes.pdf', 'application/pdf'))
+            ->attach(\Swift_Attachment::fromPath($brandsPdfPath, 'application/pdf'));
 
         $this->get('mailer')->send($message);
 

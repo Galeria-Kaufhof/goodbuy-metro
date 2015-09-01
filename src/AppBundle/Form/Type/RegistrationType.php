@@ -28,8 +28,8 @@ class RegistrationType extends AbstractType
             ->add('address',        'text',  ['label' => 'Straße und Hausnummer:', 'required' => false])
             ->add('zipcode',        'text',  ['label' => 'PLZ:', 'max_length' => 5, 'required' => false])
             ->add('city',           'text',  ['label' => 'Ort:', 'required' => false])
-            ->add('email',          'email', ['label' => 'E-Mail Adresse:', 'required' => true])
-            ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer:', 'required' => true])
+            ->add('email',          'email', ['label' => 'E-Mail Adresse: *', 'required' => true])
+            ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer: *', 'required' => true])
             ->add(
                 'salesdivision',
                 'choice',
@@ -41,13 +41,13 @@ class RegistrationType extends AbstractType
                     ],
                     'required' => true,
                     'multiple' => false,
-                    'label'    => 'Ihre Vertriebslinie:'
+                    'label'    => 'Ihre Vertriebslinie: *'
                 ])
             ->add(
                 'optInAccepted',
                 'checkbox',
                 [
-                    'label' => 'Ich stimme den Teilnahmebedingungen zu:',
+                    'label' => 'Ich stimme den Teilnahmebedingungen zu: *',
                     'mapped' => false,
                     'label_attr' => ['class' => 'display-inline']
                 ]
