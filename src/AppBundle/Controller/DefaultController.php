@@ -178,6 +178,10 @@ class DefaultController extends Controller
             )
         );
 
+        if ($this->get('kernel')->getEnvironment() === 'dev') {
+            file_put_contents('/var/tmp/coupon.pdf', $pdfData);
+        }
+
         $message = \Swift_Message::newInstance()
             ->setSubject('Ihre Rabattcodes für die Good Bye Metro Sonderaktion')
             ->setFrom('goodbye-metro@kaufhof.de')

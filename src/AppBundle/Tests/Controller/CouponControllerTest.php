@@ -67,7 +67,7 @@ class CouponControllerTest extends WebTestCase
         );
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Mitarbeiternummer: 1234567890', $crawler->filter('body')->text());
+        $this->assertContains('Einfach diesen Warengutschein beim Einkauf an der Kasse Ihrer GALERIA Kaufhof abgeben', $crawler->filter('body')->text());
     }
 
     public function testIndexWithNonExistantCustomer()
