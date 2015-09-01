@@ -4,7 +4,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$PA
 
 cd /opt/goodbye-metro/preprod/
 
-for i in $(seq -f "%05g" 0 1000)
+for i in $(seq -f "%05g" 0 400)
 do
   sudo -u www-data /usr/bin/php app/console doctrine:query:sql --env=preprod "INSERT INTO couponcode (code) VALUES ('98500125010104700010100${i}cZjike0TCb7hv37__0000000000000000002');" || exit 1
 done
