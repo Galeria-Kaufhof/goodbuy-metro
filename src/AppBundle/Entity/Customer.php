@@ -31,6 +31,7 @@ class Customer
 
     /**
      * @var string
+     *
      * @Assert\NotBlank()
      * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255, unique=true)
@@ -114,6 +115,7 @@ class Customer
 
     /**
      * @var ArrayCollection|Couponcodes[]
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Couponcode", mappedBy="customer")
      * @ORM\OrderBy({"id" = "DESC"})
      */
