@@ -43,6 +43,15 @@ class RegistrationType extends AbstractType
                     'multiple' => false,
                     'label'    => 'Ihre Vertriebslinie:'
                 ])
+            ->add(
+                'optInAccepted',
+                'checkbox',
+                [
+                    'label' => 'Ich stimme den Teilnahmebedingungen zu:',
+                    'mapped' => false,
+                    'label_attr' => ['class' => 'display-inline']
+                ]
+            )
             ->add('Save', 'submit', ['label' => 'Absenden', 'attr' => ['class' => 'btn btn-primary']]);
     }
 

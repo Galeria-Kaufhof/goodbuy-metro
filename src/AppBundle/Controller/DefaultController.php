@@ -24,6 +24,19 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            if ($form->get('optInAccepted')->getData() !== true) {
+                $this->addFlash(
+                    'error',
+                    'Bitte stimmen Sie der Aufnahme in den Newsletter zu.'
+                );
+                return $this->render(
+                    'AppBundle:default:index.html.twig',
+                    ['form' => $form->createView()],
+                    new Response(null, 400)
+                );
+            }
+
             $customer = $form->getData();
 
             $em = $this->getDoctrine()->getManager();

@@ -96,7 +96,12 @@ label {
     margin-bottom: 0;
 }
 
-input {
+label.display-inline {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+input[type="text"] {
     width: 300px;
 }
 
