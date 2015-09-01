@@ -32,8 +32,8 @@ class Customer
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\NotBlank(message = "Bitte geben Sie eine E-Mailadresse an.")
+     * @Assert\Email(message = "Diese E-Mailadresse ist ungültig.")
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
@@ -72,7 +72,7 @@ class Customer
     /**
      * @var string
      *
-     * @Assert\Regex("/^[0-9]{5}$/", message = "Die Angabe zur Postleitzahl enthält ungültige Zeichen.")
+     * @Assert\Regex("/^[0-9]{5}$/", message = "Diese Postleitzahl ist ungültig.")
      * @ORM\Column(name="zipcode", type="string", length=5, nullable=true)
      */
     private $zipcode;
@@ -88,6 +88,8 @@ class Customer
     /**
      * @var string
      *
+     * @Assert\NotBlank(message = "Bitte geben Sie eine Mitarbeiternummer an.")
+     * @Assert\Regex("/^[0-9 -]{5,32}$/", message = "Diese Mitarbeiternummer ist ungültig.")
      * @ORM\Column(name="employee_number", type="string", length=32, unique=true)
      */
     private $employeeNumber;
