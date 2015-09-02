@@ -110,11 +110,18 @@ class DefaultController extends Controller
             );
         }
 
+        $response = new Response();
+        if (!$form->isSubmitted()) {
+            $response->setPublic();
+            $response->setSharedMaxAge('60');
+        }
+
         return $this->render(
             'AppBundle:default:index.html.twig',
             [
                 'form' => $form->createView()
-            ]
+            ],
+            $response
         );
     }
 
