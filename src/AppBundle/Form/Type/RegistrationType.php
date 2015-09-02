@@ -5,6 +5,7 @@ namespace AppBundle\Form\Type;
 use AppBundle\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
@@ -67,11 +68,11 @@ class RegistrationType extends AbstractType
             ->add('Save', 'submit', ['label' => 'Absenden', 'attr' => ['class' => 'btn btn-primary']]);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
-                'data_class'         => 'AppBundle\Entity\Customer',
+                'data_class'         => '\AppBundle\Entity\Customer',
                 'csrf_protection'    => true,
                 'allow_extra_fields' => true
             ]
