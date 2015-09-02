@@ -22,7 +22,7 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
-    default_locale:  "%locale%"
+    default_locale:  de_DE
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -92,3 +92,8 @@ knp_snappy:
         options:    []
     image:
         enabled:    false
+
+ewz_recaptcha:
+    public_key:  6LcIOgoTAAAAAFU6PXN3L7fCuCWzhtT7rzODaDy2
+    private_key: 6LcIOgoTAAAAALyOn-M6AvZFV9laQs_FKELbABLq
+    locale_key:  %kernel.default_locale%

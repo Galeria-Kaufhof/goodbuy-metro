@@ -6,6 +6,7 @@ use AppBundle\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 class RegistrationType extends AbstractType
 {
@@ -50,6 +51,17 @@ class RegistrationType extends AbstractType
                     'label' => 'Ich stimme den Teilnahmebedingungen zu: *',
                     'mapped' => false,
                     'label_attr' => ['class' => 'display-inline']
+                ]
+            )
+            ->add(
+                'recaptcha',
+                'ewz_recaptcha',
+                [
+                    'label' => 'Verifizierung: *',
+                    'mapped' => false,
+                    'constraints' => [
+                        new RecaptchaTrue(['message' => 'Bitte aktivieren Sie das CAPTCHA.'])
+                    ]
                 ]
             )
             ->add('Save', 'submit', ['label' => 'Absenden', 'attr' => ['class' => 'btn btn-primary']]);

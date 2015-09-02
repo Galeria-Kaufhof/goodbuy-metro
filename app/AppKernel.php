@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'preprod'))) {
