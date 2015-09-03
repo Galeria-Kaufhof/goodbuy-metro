@@ -60,11 +60,11 @@ class CouponMapperService
 
                 //
                 if (strlen($couponcode->getCode()) === 64) {
-                    $normalizedEmployeeNumber = preg_replace("/[^a-zA-Z0-9-]+/", "", $customer->getEmployeeNumber());
+                    $normalizedEmployeeNumber = preg_replace("/[^0-9]+/", "", $customer->getEmployeeNumber());
                     $code = $couponcode->getCode();
                     $newCode = substr($code, 0, 45);
-                    $newCode .= str_pad(substr($normalizedEmployeeNumber, 0, 17), 17, '_');
-                    $newCode .= $customer->getSalesdivision();
+                    $newCode .= str_pad(substr($normalizedEmployeeNumber, 0, 16), 16, '0', \STR_PAD_LEFT);
+                    $newCode .= '0' . $customer->getSalesdivision();
                     $newCode .= substr($code, -1, 1);
                     $couponcode->setCode($newCode);
                 }
