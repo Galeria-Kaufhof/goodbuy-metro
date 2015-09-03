@@ -84,9 +84,7 @@ class RegistrationType extends AbstractType
             [
                 'data_class'         => '\AppBundle\Entity\Customer',
                 'csrf_protection'    => true,
-                'allow_extra_fields' => true,
-                'attr'=>array('novalidate'=>'novalidate')
-
+                'allow_extra_fields' => true
             ]
         );
     }
