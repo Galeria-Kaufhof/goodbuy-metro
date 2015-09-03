@@ -33,8 +33,7 @@ class Customer
      * @var string
      *
      * @Assert\NotBlank(message = "Bitte geben Sie eine E-Mailadresse an.")
-     * @Assert\Email(message = "Diese E-Mailadresse ist ungültig.")
-     * @Assert\Regex("/@@/", match=false, message = "Diese E-Mailadresse ist ungültig.")
+     * @Assert\Email(strict=true, message = "Diese E-Mailadresse ist ungültig.")
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
