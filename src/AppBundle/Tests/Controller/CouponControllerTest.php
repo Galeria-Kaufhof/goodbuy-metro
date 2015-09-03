@@ -30,6 +30,7 @@ class CouponControllerTest extends WebTestCase
         $customer->setEmployeeNumber('1234567890');
         $customer->setSalesdivision(Customer::SALESDIVISION_MEDIAMARKT_SATURN);
         $customer->setIsActivated(true);
+        $customer->setOptInAccepted(false);
         $em->persist($customer);
 
         $couponcode = new Couponcode();

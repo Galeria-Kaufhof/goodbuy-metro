@@ -25,10 +25,10 @@ class DefaultController extends Controller
 
         if ($form->isValid()) {
 
-            if ($form->get('optInAccepted')->getData() !== true) {
+            if ($form->get('conditionsAccepted')->getData() !== true) {
                 $this->addFlash(
                     'error',
-                    'Bitte stimmen Sie der Aufnahme in den Newsletter zu.'
+                    'Bitte stimmen Sie den Teilnahmebedingungen zu.'
                 );
                 return $this->render(
                     'AppBundle:default:index.html.twig',

@@ -49,8 +49,18 @@ class RegistrationType extends AbstractType
                 'optInAccepted',
                 'checkbox',
                 [
+                    'label' => 'Ich möchte den Galeria.de Newsletter abonnieren: ',
+                    'required' => false,
+                    'label_attr' => ['class' => 'display-inline']
+                ]
+            )
+            ->add(
+                'conditionsAccepted',
+                'checkbox',
+                [
                     'label' => 'Ich stimme den Teilnahmebedingungen zu: *',
                     'mapped' => false,
+                    'required' => true,
                     'label_attr' => ['class' => 'display-inline']
                 ]
             )
@@ -74,7 +84,9 @@ class RegistrationType extends AbstractType
             [
                 'data_class'         => '\AppBundle\Entity\Customer',
                 'csrf_protection'    => true,
-                'allow_extra_fields' => true
+                'allow_extra_fields' => true,
+                'attr'=>array('novalidate'=>'novalidate')
+
             ]
         );
     }

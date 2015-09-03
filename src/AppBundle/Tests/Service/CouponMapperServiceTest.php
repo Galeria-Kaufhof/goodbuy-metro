@@ -26,6 +26,7 @@ class CouponMapperServiceTest extends WebTestCase
         $customer->setEmail('example@example.org');
         $customer->setEmployeeNumber('12`345-é_ok#2©');
         $customer->setSalesdivision(Customer::SALESDIVISION_MEDIAMARKT_SATURN);
+        $customer->setOptInAccepted(false);
         $em->persist($customer);
 
         $couponcode = new Couponcode();
@@ -94,6 +95,7 @@ class CouponMapperServiceTest extends WebTestCase
         $customer->setEmail('example@example.org');
         $customer->setEmployeeNumber('12345');
         $customer->setSalesdivision(Customer::SALESDIVISION_MEDIAMARKT_SATURN);
+        $customer->setOptInAccepted(false);
         $em->persist($customer);
 
         $couponcode = new Couponcode();

@@ -34,6 +34,7 @@ class Customer
      *
      * @Assert\NotBlank(message = "Bitte geben Sie eine E-Mailadresse an.")
      * @Assert\Email(message = "Diese E-Mailadresse ist ungültig.")
+     * @Assert\Regex("/@@/", match=false, message = "Diese E-Mailadresse ist ungültig.")
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
@@ -100,6 +101,13 @@ class Customer
      * @ORM\Column(name="is_activated", type="boolean")
      */
     private $isActivated;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="opt_in_accepted", type="boolean")
+     */
+    private $optInAccepted;
 
     /**
      * @var string
@@ -425,5 +433,28 @@ class Customer
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set optInAccepted
+     *
+     * @param boolean $optInAccepted
+     * @return Customer
+     */
+    public function setOptInAccepted($optInAccepted)
+    {
+        $this->optInAccepted = $optInAccepted;
+
+        return $this;
+    }
+
+    /**
+     * Get optInAccepted
+     *
+     * @return boolean 
+     */
+    public function getOptInAccepted()
+    {
+        return $this->optInAccepted;
     }
 }
