@@ -107,7 +107,7 @@ label.display-inline {
     width: 280px;
 }
 
-input[type="text"] {
+input[type="text"], input[type="email"] {
     width: 280px;
 }
 
