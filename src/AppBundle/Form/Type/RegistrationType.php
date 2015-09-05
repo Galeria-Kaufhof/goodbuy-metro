@@ -83,7 +83,7 @@ class RegistrationType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class'         => '\AppBundle\Entity\Customer',
-                'csrf_protection'    => true,
+                'csrf_protection'    => false,
                 'allow_extra_fields' => true
             ]
         );
