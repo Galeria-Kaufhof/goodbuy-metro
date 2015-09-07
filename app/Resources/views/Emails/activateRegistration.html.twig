@@ -4,7 +4,7 @@
 Guten Tag,
 </p>
 <p>
-Aktivierungslink: http://80.69.46.22:8080/customer/{{ customer.id }}/confirmation/{{ customer.activationCode }}
+Aktivierungslink: {{ rooturi }}{{ path('confirm', {'customerId': customer.id, 'activationCode': customer.activationCode}) }}
 </p>
 <p>
 Mit freundlichen Grüßen,

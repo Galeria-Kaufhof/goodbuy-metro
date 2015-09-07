@@ -14,8 +14,8 @@
     <title>{% block title %}Goodbye Metro Sonderaktion{% endblock %}</title>
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('bundles/app/vendor/bootstrap/dist/css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/app/default.css') }}">
+        <link rel="stylesheet" href="{{ rooturi }}{{ asset('bundles/app/vendor/bootstrap/dist/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ rooturi }}{{ asset('bundles/app/default.css') }}">
     {% endblock %}
 
     {% block javascripts_head %}
@@ -32,7 +32,7 @@
         <div class="wrapper">
             <div class="container">
                 <div class="navbar-header">
-                    <img src="{{ asset('bundles/app/img/Galeria_Kaufhof-small.png') }}">
+                    <img src="{{ rooturi }}{{ asset('bundles/app/img/Galeria_Kaufhof-small.png') }}">
                 </div>
             </div>
         </div>
@@ -74,11 +74,11 @@
 </footer>
 
 {% block javascripts_foot %}
-    <script src="{{ asset('bundles/app/vendor/jquery/dist/jquery.js') }}"></script>
-    <script src="{{ asset('bundles/app/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{ rooturi }}{{ asset('bundles/app/vendor/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ rooturi }}{{ asset('bundles/app/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{{ asset('bundles/app/ie10-viewport-bug-workaround.js') }}"></script>
+    <script src="{{ rooturi }}{{ asset('bundles/app/ie10-viewport-bug-workaround.js') }}"></script>
 {% endblock %}
 {% block javascripts_additional %}{% endblock %}
 </body>

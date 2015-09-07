@@ -25,3 +25,7 @@ monolog:
             level: debug
         console:
             type:  console
+
+twig:
+    globals:
+        rooturi: https://www.galeria-kaufhof.de/goodbye-metro
