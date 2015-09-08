@@ -39,7 +39,8 @@ class RegistrationType extends AbstractType
                     'choices' => [
                         Customer::SALESDIVISION_CASH_CARRY => 'Cash & Carry',
                         Customer::SALESDIVISION_MEDIAMARKT_SATURN => 'MediaMarkt / Saturn',
-                        Customer::SALESDIVISION_REAL => 'Real'
+                        Customer::SALESDIVISION_REAL => 'Real',
+                        Customer::SALESDIVISION_REDCOON => 'redcoon'
                     ],
                     'required' => true,
                     'multiple' => false,

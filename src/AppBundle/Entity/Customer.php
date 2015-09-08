@@ -16,6 +16,7 @@ class Customer
     const SALESDIVISION_CASH_CARRY = 0;
     const SALESDIVISION_MEDIAMARKT_SATURN = 1;
     const SALESDIVISION_REAL = 2;
+    const SALESDIVISION_REDCOON = 3;
 
     const GREETING_MRS = 0;
     const GREETING_MR = 1;
