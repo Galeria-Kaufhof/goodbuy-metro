@@ -84,11 +84,19 @@ label {
     display: block;
     margin-top: 24px;
     margin-bottom: 0;
+    width: 280px;
 }
 
 label.display-inline {
     display: inline-block;
-    margin-right: 8px;
+}
+
+label.non-bold {
+    font-weight: 300;
+}
+
+#registration {
+    width: 280px;
 }
 
 #registration ul {
@@ -112,6 +120,10 @@ input[type="text"], input[type="email"] {
 }
 
 button {
+    margin-top: 24px;
+}
+
+p.mailinfo {
     margin-top: 24px;
 }
 

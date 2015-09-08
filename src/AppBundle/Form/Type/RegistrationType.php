@@ -46,22 +46,23 @@ class RegistrationType extends AbstractType
                     'label'    => 'Ihre Vertriebslinie: *'
                 ])
             ->add(
-                'optInAccepted',
-                'checkbox',
-                [
-                    'label' => 'Ich möchte den Galeria.de Newsletter abonnieren: ',
-                    'required' => false,
-                    'label_attr' => ['class' => 'display-inline']
-                ]
-            )
-            ->add(
                 'conditionsAccepted',
                 'checkbox',
                 [
-                    'label' => 'Ich stimme den Teilnahmebedingungen zu: *',
+                    'label' => 'Ich willige ein, dass meine E-Maildaten für die Aktion "Good Bye Metro" für den
+Zeitraum vom 24.-30.09.2015 zum Zwecke der Abwicklung gespeichert und nach Abschluss der Aktion gelöscht werden: *',
                     'mapped' => false,
                     'required' => true,
-                    'label_attr' => ['class' => 'display-inline']
+                    'label_attr' => ['class' => 'non-bold display-inline']
+                ]
+            )
+            ->add(
+                'optInAccepted',
+                'checkbox',
+                [
+                    'label' => 'Weiterhin willige ich ein, dass meine erhobene E-Mailadresse zu Marketingzwecken und Werbung nur von den folgenden Firmen GALERIA Kaufhof GmbH, real,-, Metro Cash & Carry Deutschland, Media Saturn und der Hudson Bay Company genutzt werden darf: ',
+                    'required' => false,
+                    'label_attr' => ['class' => 'non-bold display-inline']
                 ]
             )
             ->add(
