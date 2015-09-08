@@ -77,7 +77,7 @@ class DefaultController extends Controller
             $em->flush();
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Ihre Registrierung für die Good Bye Metro Sonderaktion')
+                ->setSubject('Ihre Registrierung für die Goodbye Kaufhof Sonderaktion')
                 ->setFrom('goodbye-metro@kaufhof.de')
                 ->setTo($customer->getEmail())
                 ->setBody(
@@ -205,7 +205,7 @@ class DefaultController extends Controller
         $brandsPdfPath = $fileLocator->locate('@AppBundle/Resources/other/Marken_Selbst_Vertragspartner_2015_09_24.pdf');
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('Ihre Rabattcodes für die Good Bye Metro Sonderaktion')
+            ->setSubject('Ihre Rabattcodes für die Goodbye Kaufhof Sonderaktion')
             ->setFrom('goodbye-metro@kaufhof.de')
             ->setTo($customer->getEmail())
             ->setBody(

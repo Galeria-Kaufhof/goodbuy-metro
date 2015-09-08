@@ -50,7 +50,7 @@ class RegistrationType extends AbstractType
                 'conditionsAccepted',
                 'checkbox',
                 [
-                    'label' => 'Ich willige ein, dass meine E-Maildaten für die Aktion "Good Bye Metro" für den
+                    'label' => 'Ich willige ein, dass meine E-Maildaten für die Aktion "Goodbye Kaufhof" für den
 Zeitraum vom 24.-30.09.2015 zum Zwecke der Abwicklung gespeichert und nach Abschluss der Aktion gelöscht werden: *',
                     'mapped' => false,
                     'required' => true,
