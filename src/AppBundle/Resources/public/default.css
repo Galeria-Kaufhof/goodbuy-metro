@@ -1,7 +1,7 @@
 body {
     padding-top: 68px;
     background-color: #fff;
-    color: #144d66;
+    color: #006E3C;
     white-space: normal;
     font-weight: 300;
 }
@@ -117,6 +117,25 @@ label.non-bold {
 
 input[type="text"], input[type="email"] {
     width: 280px;
+}
+
+input[type="checkbox"] {
+    margin-top: 8px;
+    margin-left: 4px;
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+}
+
+input[type="checkbox"] {
+    margin-top: 8px;
+    margin-left: 4px;
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
 }
 
 button {
