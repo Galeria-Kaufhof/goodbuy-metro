@@ -103,6 +103,13 @@ class Customer
     private $isActivated;
 
     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="datetime_activation", type="datetime", nullable=true)
+     */
+    private $datetimeActivation;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="opt_in_accepted", type="boolean")
@@ -243,6 +250,9 @@ class Customer
     public function setIsActivated($isActivated)
     {
         $this->isActivated = $isActivated;
+        if (null === $this->getDatetimeActivation()) {
+            $this->setDatetimeActivation(new \DateTime('now'));
+        }
 
         return $this;
     }
@@ -456,5 +466,28 @@ class Customer
     public function getOptInAccepted()
     {
         return $this->optInAccepted;
+    }
+
+    /**
+     * Set datetimeActivation
+     *
+     * @param \DateTime $datetimeActivation
+     * @return Customer
+     */
+    public function setDatetimeActivation($datetimeActivation)
+    {
+        $this->datetimeActivation = $datetimeActivation;
+
+        return $this;
+    }
+
+    /**
+     * Get datetimeActivation
+     *
+     * @return \DateTime 
+     */
+    public function getDatetimeActivation()
+    {
+        return $this->datetimeActivation;
     }
 }
