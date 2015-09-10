@@ -110,6 +110,13 @@ class Customer
     private $datetimeActivation;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ip_activation", type="string", length=15, nullable=true)
+     */
+    private $ipActivation;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="opt_in_accepted", type="boolean")
@@ -247,11 +254,15 @@ class Customer
      * @param boolean $isActivated
      * @return Customer
      */
-    public function setIsActivated($isActivated)
+    public function setIsActivated($isActivated, $ip = null)
     {
         $this->isActivated = $isActivated;
         if (null === $this->getDatetimeActivation()) {
             $this->setDatetimeActivation(new \DateTime('now'));
+        }
+
+        if ($ip !== null) {
+            $this->setIpActivation((string)$ip);
         }
 
         return $this;
@@ -489,5 +500,28 @@ class Customer
     public function getDatetimeActivation()
     {
         return $this->datetimeActivation;
+    }
+
+    /**
+     * Set ipActivation
+     *
+     * @param string $ipActivation
+     * @return Customer
+     */
+    public function setIpActivation($ipActivation)
+    {
+        $this->ipActivation = $ipActivation;
+
+        return $this;
+    }
+
+    /**
+     * Get ipActivation
+     *
+     * @return string 
+     */
+    public function getIpActivation()
+    {
+        return $this->ipActivation;
     }
 }

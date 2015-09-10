@@ -129,7 +129,7 @@ class DefaultController extends Controller
      * @Route("/customer/{customerId}/confirmation/{activationCode}", requirements={"customerId" = "\d+"}, name="confirm")
      * @Method({"GET"})
      */
-    public function confirmAction($customerId, $activationCode)
+    public function confirmAction(Request $request, $customerId, $activationCode)
     {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('AppBundle\Entity\Customer');
@@ -174,7 +174,7 @@ class DefaultController extends Controller
             );
         }
 
-        $customer->setIsActivated(true);
+        $customer->setIsActivated(true, $request->headers->get('X_FORWARDED_FOR'));
         $em->flush();
 
         $couponcodesData = [];
@@ -187,12 +187,18 @@ class DefaultController extends Controller
             $couponcodesData[] = base64_encode($imageData);
         }
 
+        $useRemoteFont = true;
+        if ($this->get('kernel')->getEnvironment() === 'test') {
+            $useRemoteFont = false; // This decouples test runs from Internet connectivity
+        }
+
         $pdfData = $this->get('knp_snappy.pdf')->getOutputFromHtml(
             $this->renderView(
                 'AppBundle:coupons:index.html.twig',
                 array(
                     'customer' => $customer,
-                    'couponcodesData' => $couponcodesData
+                    'couponcodesData' => $couponcodesData,
+                    'useRemoteFont' => $useRemoteFont
                 )
             )
         );
