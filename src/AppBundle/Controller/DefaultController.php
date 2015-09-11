@@ -95,9 +95,19 @@ class DefaultController extends Controller
             ;
             $this->get('mailer')->send($message);
 
+            $showCustomerdata = false;
+            if (   $this->get('kernel')->getEnvironment() === 'dev'
+                || $this->get('kernel')->getEnvironment() === 'preprod') {
+                $showCustomerdata = true;
+            }
+
             $this->addFlash('success', 'Vielen Dank. Sie erhalten nun eine Aktivierungsmail.');
             return $this->render(
-                'AppBundle:default:thankyou.html.twig'
+                'AppBundle:default:thankyou.html.twig',
+                [
+                    'showCustomerdata' => $showCustomerdata,
+                    'customer' => $customer
+                ]
             );
         }
 

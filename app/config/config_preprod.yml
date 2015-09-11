@@ -6,9 +6,7 @@ web_profiler:
     intercept_redirects: false
 
 ewz_recaptcha:
-    public_key:  6LfCOwwTAAAAANBBOBWeR7tL02EO4j2vLzDwL7Tx
-    private_key: 6LfCOwwTAAAAAFi45XJwzjQWtiqlQS6J1nF-QaAj
-    locale_key:  %kernel.default_locale%
+    enabled: false
 
 twig:
     globals:

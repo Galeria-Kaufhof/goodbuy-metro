@@ -2,4 +2,9 @@
 
 {% block body %}
 
+    {% if showCustomerdata is defined and showCustomerdata %}
+        <div id="customerId">{{ customer.id }}</div>
+        <div id="activationCode">{{ customer.activationCode }}</div>
+    {% endif %}
+
 {% endblock %}
