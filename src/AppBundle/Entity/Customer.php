@@ -9,7 +9,7 @@ use AppBundle\Validator\Constraints as AdditionalAssert;
 /**
  * Customer
  *
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="salesdivision_employee_number", columns={"salesdivision", "employee_number"})})
  * @ORM\Entity
  *
  * @AdditionalAssert\EmployeeNumberIsValid
@@ -93,7 +93,7 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="employee_number", type="string", length=32, unique=true)
+     * @ORM\Column(name="employee_number", type="string", length=32)
      */
     private $employeeNumber;
 

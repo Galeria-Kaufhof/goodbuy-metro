@@ -43,3 +43,6 @@ monolog:
 
 assetic:
     use_controller: true
+
+ewz_recaptcha:
+    enabled: false

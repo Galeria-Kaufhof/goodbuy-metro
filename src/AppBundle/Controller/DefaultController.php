@@ -55,7 +55,10 @@ class DefaultController extends Controller
                 );
             }
 
-            $existingCustomer = $repo->findOneBy(['employeeNumber' => $customer->getEmployeeNumber()]);
+            $existingCustomer = $repo->findOneBy([
+                'salesdivision' => $customer->getSalesDivision(),
+                'employeeNumber' => $customer->getEmployeeNumber()
+            ]);
             if (!empty($existingCustomer)) {
                 $this->addFlash(
                     'error',
