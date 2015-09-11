@@ -4,12 +4,15 @@ namespace AppBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Validator\Constraints as AdditionalAssert;
 
 /**
  * Customer
  *
  * @ORM\Table()
  * @ORM\Entity
+ *
+ * @AdditionalAssert\EmployeeNumberIsValid
  */
 class Customer
 {
@@ -17,6 +20,7 @@ class Customer
     const SALESDIVISION_MEDIAMARKT_SATURN = 1;
     const SALESDIVISION_REAL = 2;
     const SALESDIVISION_REDCOON = 3;
+    const SALESDIVISION_METRO_GROUP_LOGISTIK = 4;
 
     const GREETING_MRS = 0;
     const GREETING_MR = 1;
@@ -89,8 +93,6 @@ class Customer
     /**
      * @var string
      *
-     * @Assert\NotBlank(message = "Bitte geben Sie eine Mitarbeiternummer an.")
-     * @Assert\Regex("/^[0-9 -]{5,32}$/", message = "Diese Mitarbeiternummer ist ungültig.")
      * @ORM\Column(name="employee_number", type="string", length=32, unique=true)
      */
     private $employeeNumber;
@@ -144,7 +146,6 @@ class Customer
      * @ORM\OrderBy({"id" = "DESC"})
      */
     private $couponcodes;
-
 
     /**
      * Get id

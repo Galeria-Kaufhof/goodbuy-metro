@@ -6,7 +6,6 @@ use AppBundle\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 class RegistrationType extends AbstractType
@@ -31,16 +30,17 @@ class RegistrationType extends AbstractType
             ->add('zipcode',        'text',  ['label' => 'PLZ:', 'max_length' => 5, 'required' => false])
             ->add('city',           'text',  ['label' => 'Ort:', 'required' => false])
             ->add('email',          'email', ['label' => 'E-Mail Adresse: *', 'required' => true])
-            ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer: *', 'required' => true])
+            ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer (nur Ziffern ohne Leer- oder Trennzeichen!): *', 'required' => true])
             ->add(
                 'salesdivision',
                 'choice',
                 [
                     'choices' => [
-                        Customer::SALESDIVISION_CASH_CARRY => 'Cash & Carry',
-                        Customer::SALESDIVISION_MEDIAMARKT_SATURN => 'MediaMarkt / Saturn',
+                        Customer::SALESDIVISION_CASH_CARRY => 'METRO Cash & Carry',
+                        Customer::SALESDIVISION_MEDIAMARKT_SATURN => 'Media-Saturn-Holding',
                         Customer::SALESDIVISION_REAL => 'Real',
-                        Customer::SALESDIVISION_REDCOON => 'redcoon'
+                        Customer::SALESDIVISION_REDCOON => 'redcoon',
+                        Customer::SALESDIVISION_METRO_GROUP_LOGISTIK => 'METRO Group Logistik'
                     ],
                     'required' => true,
                     'multiple' => false,
