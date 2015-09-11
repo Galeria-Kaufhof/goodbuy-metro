@@ -38,6 +38,8 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         rooturi: http://localhost:8000
+    form:
+        resources: ['bootstrap_3_layout.html.twig']
 
 # Assetic Configuration
 assetic:

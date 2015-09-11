@@ -119,25 +119,6 @@ input[type="text"], input[type="email"] {
     width: 280px;
 }
 
-input[type="checkbox"] {
-    margin-top: 8px;
-    margin-left: 4px;
-    -ms-transform: scale(2); /* IE */
-    -moz-transform: scale(2); /* FF */
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-}
-
-input[type="checkbox"] {
-    margin-top: 8px;
-    margin-left: 4px;
-    -ms-transform: scale(2); /* IE */
-    -moz-transform: scale(2); /* FF */
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-    transform: scale(2);
-}
-
 button {
     margin-top: 24px;
 }
