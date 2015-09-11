@@ -128,7 +128,7 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="activation_code", type="string", length=40, unique=true)
+     * @ORM\Column(name="activation_code", type="string", length=40)
      */
     private $activationCode;
 
