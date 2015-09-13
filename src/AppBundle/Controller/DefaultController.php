@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\RegistrationType;
-use PHPQRCode\QRcode;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -71,6 +70,7 @@ class DefaultController extends Controller
                 );
             }
 
+            $customer->setCouponsHaveBeenSent(false);
             $customer->setIsActivated(false);
             $secret = $this->getParameter('secret');
             $customer->setActivationCode(sha1($secret . $customer->getEmail()));
@@ -173,73 +173,9 @@ class DefaultController extends Controller
             );
         }
 
-        $mapped = $this->get('couponmapper')->mapNToCustomer(6, $customer);
-
-        if (!$mapped) {
-            $this->addFlash(
-                'error',
-                'Es ist ein interner Fehler aufgetreten - bitte versuchen Sie es später erneut.'
-            );
-            return $this->render(
-                'AppBundle:default:confirm.html.twig',
-                [],
-                new Response(null, 503)
-            );
-        }
-
         $customer->setIsActivated(true, $request->headers->get('X_FORWARDED_FOR'));
         $em->flush();
 
-        $couponcodesData = [];
-        foreach ($customer->getCouponcodes() as $couponcode) {
-            ob_clean();
-            ob_start();
-            @QRcode::png($couponcode->getCode());
-            $imageData = ob_get_contents();
-            ob_end_clean();
-            $couponcodesData[] = base64_encode($imageData);
-        }
-
-        $useRemoteFont = true;
-        if ($this->get('kernel')->getEnvironment() === 'test') {
-            $useRemoteFont = false; // This decouples test runs from Internet connectivity
-        }
-
-        $pdfData = $this->get('knp_snappy.pdf')->getOutputFromHtml(
-            $this->renderView(
-                'AppBundle:coupons:index.html.twig',
-                array(
-                    'customer' => $customer,
-                    'couponcodesData' => $couponcodesData,
-                    'useRemoteFont' => $useRemoteFont
-                )
-            )
-        );
-
-        if ($this->get('kernel')->getEnvironment() === 'dev') {
-            file_put_contents('/var/tmp/coupon.pdf', $pdfData);
-        }
-
-        $fileLocator = $this->get('file_locator');
-        $brandsPdfPath = $fileLocator->locate('@AppBundle/Resources/other/Marken_Selbst_Vertragspartner_2015_09_24.pdf');
-
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Ihre Rabattcodes für die Goodbye Kaufhof Sonderaktion')
-            ->setFrom('goodbye-metro@kaufhof.de')
-            ->setTo($customer->getEmail())
-            ->setBody(
-                $this->renderView(
-                    'Emails/couponCodes.html.twig',
-                    [
-                        'customer' => $customer
-                    ]
-                ),
-                'text/html'
-            )
-            ->attach(\Swift_Attachment::newInstance($pdfData, 'Goodbye-Metro-Rabattcodes.pdf', 'application/pdf'))
-            ->attach(\Swift_Attachment::fromPath($brandsPdfPath, 'application/pdf'));
-
-        $this->get('mailer')->send($message);
 
         $this->addFlash(
             'success',

@@ -22,6 +22,7 @@ class CouponMapperServiceTest extends WebTestCase
 
         $customer = new Customer();
         $customer->setIsActivated(true);
+        $customer->setCouponsHaveBeenSent(false);
         $customer->setActivationCode('abc');
         $customer->setEmail('example@example.org');
         $customer->setEmployeeNumber('12`345-é_ok#2©');
@@ -91,6 +92,7 @@ class CouponMapperServiceTest extends WebTestCase
 
         $customer = new Customer();
         $customer->setIsActivated(true);
+        $customer->setCouponsHaveBeenSent(false);
         $customer->setActivationCode('abc');
         $customer->setEmail('example@example.org');
         $customer->setEmployeeNumber('12345');

@@ -9,7 +9,7 @@ use AppBundle\Validator\Constraints as AdditionalAssert;
 /**
  * Customer
  *
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="salesdivision_employee_number", columns={"salesdivision", "employee_number"})})
+ * @ORM\Table(indexes={@ORM\Index(name="activated_coupons_idx", columns={"is_activated", "coupons_have_been_sent"})}, uniqueConstraints={@ORM\UniqueConstraint(name="salesdivision_employee_number", columns={"salesdivision", "employee_number"})})
  * @ORM\Entity
  *
  * @AdditionalAssert\EmployeeNumberIsValid
@@ -103,6 +103,13 @@ class Customer
      * @ORM\Column(name="is_activated", type="boolean")
      */
     private $isActivated;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="coupons_have_been_sent", type="boolean")
+     */
+    private $couponsHaveBeenSent;
 
     /**
      * @var datetime
@@ -524,5 +531,28 @@ class Customer
     public function getIpActivation()
     {
         return $this->ipActivation;
+    }
+
+    /**
+     * Set couponsHaveBeenSent
+     *
+     * @param boolean $couponsHaveBeenSent
+     * @return Customer
+     */
+    public function setCouponsHaveBeenSent($couponsHaveBeenSent)
+    {
+        $this->couponsHaveBeenSent = $couponsHaveBeenSent;
+
+        return $this;
+    }
+
+    /**
+     * Get couponsHaveBeenSent
+     *
+     * @return boolean 
+     */
+    public function getCouponsHaveBeenSent()
+    {
+        return $this->couponsHaveBeenSent;
     }
 }
