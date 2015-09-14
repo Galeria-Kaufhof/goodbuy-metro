@@ -61,7 +61,7 @@ Zeitraum vom 24.-30.09.2015 zum Zwecke der Abwicklung gespeichert und nach Absch
                 'optInAccepted',
                 'checkbox',
                 [
-                    'label' => 'Ja, ich möchte auch weiterhin über spannenden Aktionen und Gewinnspiele informiert werden und bin mit der Verwendung meiner erhobenen E-Mail-Adresse zu Marketingzwecken und für die Zusendung von Werbung per E-Mail der folgenden Firmen: GALERIA Kaufhof GmbH, real,- SB Warenhaus GmbH, Metro Cash & Carry Deutschland GmbH, Media Markt E-Business GmbH und der Hudson‘s Bay Company einverstanden. Das Einverständnis kann ich jederzeit widerrufen.',
+                    'label' => 'Ja, ich möchte auch weiterhin über spannende Aktionen und Gewinnspiele informiert werden und bin mit der Verwendung meiner erhobenen E-Mail-Adresse zu Marketingzwecken und für die Zusendung von Werbung per E-Mail der folgenden Firmen: GALERIA Kaufhof GmbH, real,- SB Warenhaus GmbH, Metro Cash & Carry Deutschland GmbH, Media Markt E-Business GmbH und der Hudson‘s Bay Company einverstanden. Das Einverständnis kann ich jederzeit widerrufen.',
                     'required' => false,
                     'label_attr' => ['class' => 'non-bold display-inline']
                 ]
