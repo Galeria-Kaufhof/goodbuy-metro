@@ -80,7 +80,7 @@ class DefaultController extends Controller
             $em->flush();
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Ihre Registrierung für die Goodbye Kaufhof Sonderaktion')
+                ->setSubject('Ihre Registrierung für die Good Buy METRO Sonderaktion')
                 ->setFrom('goodbuy-metro@jumpmail.galeria-kaufhof.de')
                 ->setTo($customer->getEmail())
                 ->setBody(

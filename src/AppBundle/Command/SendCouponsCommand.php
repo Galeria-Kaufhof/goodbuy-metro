@@ -75,7 +75,7 @@ class SendCouponsCommand extends ContainerAwareCommand
             $brandsPdfPath = $fileLocator->locate('@AppBundle/Resources/other/Marken_Selbst_Vertragspartner_2015_09_24.pdf');
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Ihre Rabattcodes für die Goodbye Kaufhof Sonderaktion')
+                ->setSubject('Ihre Rabattcodes für die Good Buy METRO Sonderaktion')
                 ->setFrom('goodbuy-metro@jumpmail.galeria-kaufhof.de')
                 ->setTo($customer->getEmail())
                 ->setBody(
