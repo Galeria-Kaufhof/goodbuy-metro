@@ -1,3 +1,17 @@
 #!/bin/bash
 
-exit 0
+sudo mkdir -p /opt/goodbye-metro/prod
+sudo chown mkiessling:mkiessling /opt/goodbye-metro/prod
+
+sudo /usr/bin/rsync -ac --stats --exclude /opt/goodbye-metro/prod/app/cache --exclude /opt/goodbye-metro/prod/app/logs /opt/goodbye-metro/preprod/ /opt/goodbye-metro/prod/ || exit 1
+
+cp /opt/goodbye-metro/parameters.prod.yml /opt/goodbye-metro/prod/app/config/parameters.yml || exit 1
+
+chmod 0777 /opt/goodbye-metro/prod/app/cache
+chmod 0777 /opt/goodbye-metro/prod/app/logs
+
+cd /opt/goodbye-metro/prod/
+
+sudo -u www-data /usr/bin/php ./app/console cache:clear --env=prod || exit 1
+sudo -u www-data /usr/bin/php ./app/console doctrine:migrations:migrate --no-interaction --env=prod || exit 1
+/usr/bin/php ./app/console assets:install --no-interaction --env=prod || exit 1
