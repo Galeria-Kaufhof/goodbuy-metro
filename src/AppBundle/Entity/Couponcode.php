@@ -24,7 +24,7 @@ class Couponcode
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=64, unique=true)
+     * @ORM\Column(name="code", type="string", length=64, unique=true, options={"collate"="utf8_bin"})
      */
     private $code;
 
