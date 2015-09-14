@@ -14,13 +14,59 @@
 
             {{ form_start(form) }}
             {{ form_errors(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
 
-            <p class="mailinfo">
-                Die Einwilligung zu Marketingzwecken und Werbung kann jederzeit über die E-Mailadresse
-                <a href="mailto:service@galeria-kaufhof.de">service@galeria-kaufhof.de</a> widerrufen werden.
-            </p>
+            <div id="registration">
+
+            {{ form_label(form.greeting) }}
+            {{ form_errors(form.greeting) }}
+            {{ form_widget(form.greeting) }}
+
+            {{ form_label(form.firstname) }}
+            {{ form_errors(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+
+            {{ form_label(form.lastname) }}
+            {{ form_errors(form.lastname) }}
+            {{ form_widget(form.lastname) }}
+
+            {{ form_label(form.address) }}
+            {{ form_errors(form.address) }}
+            {{ form_widget(form.address) }}
+
+            {{ form_label(form.zipcode) }}
+            {{ form_errors(form.zipcode) }}
+            {{ form_widget(form.zipcode) }}
+
+            {{ form_label(form.city) }}
+            {{ form_errors(form.city) }}
+            {{ form_widget(form.city) }}
+
+            {{ form_label(form.email) }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+
+            {{ form_label(form.employeeNumber) }}
+            {{ form_errors(form.employeeNumber) }}
+            {{ form_widget(form.employeeNumber) }}
+
+            {{ form_label(form.salesdivision) }}
+            {{ form_errors(form.salesdivision) }}
+            {{ form_widget(form.salesdivision) }}
+
+            {{ form_label(form.conditionsAccepted) }}
+            {{ form_errors(form.conditionsAccepted) }}
+            {{ form_widget(form.conditionsAccepted) }}
+
+            {{ form_label(form.optInAccepted) }}
+            {{ form_errors(form.optInAccepted) }}
+            {{ form_widget(form.optInAccepted) }}
+            <a href="{{ rooturi }}{{ path('optInInfos') }}">Weitere Infos dazu hier</a>.
+
+            {{ form_label(form.recaptcha) }}
+            {{ form_errors(form.recaptcha) }}
+            {{ form_widget(form.recaptcha) }}
+
+            {{ form_end(form) }}
         </div>
     </div>
 </section>

@@ -10,4 +10,4 @@ ewz_recaptcha:
 
 twig:
     globals:
-        rooturi: https://web.preprod.gkh-setu.de/goodbye-metro
+        rooturi: https://www.galeria-kaufhof.de/goodbuy-metro-preprod

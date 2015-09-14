@@ -76,7 +76,7 @@ class SendCouponsCommand extends ContainerAwareCommand
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Ihre Rabattcodes für die Goodbye Kaufhof Sonderaktion')
-                ->setFrom('goodbye-metro@kaufhof.de')
+                ->setFrom('goodbuy-metro@jumpmail.galeria-kaufhof.de')
                 ->setTo($customer->getEmail())
                 ->setBody(
                     $this->getContainer()->get('templating')->render(

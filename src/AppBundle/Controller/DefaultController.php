@@ -81,7 +81,7 @@ class DefaultController extends Controller
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Ihre Registrierung für die Goodbye Kaufhof Sonderaktion')
-                ->setFrom('goodbye-metro@kaufhof.de')
+                ->setFrom('goodbuy-metro@jumpmail.galeria-kaufhof.de')
                 ->setTo($customer->getEmail())
                 ->setBody(
                     $this->renderView(
@@ -186,4 +186,16 @@ class DefaultController extends Controller
             'AppBundle:default:confirm.html.twig'
         );
     }
+
+    /**
+     * @Route("/optin-infos/", name="optInInfos")
+     * @Method({"GET"})
+     */
+    public function optInInfosAction()
+    {
+        return $this->render(
+            'AppBundle:default:optInInfos.html.twig'
+        );
+    }
+
 }

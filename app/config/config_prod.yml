@@ -28,4 +28,4 @@ monolog:
 
 twig:
     globals:
-        rooturi: https://www.galeria-kaufhof.de/goodbye-metro
+        rooturi: https://www.galeria-kaufhof.de/goodbuy-metro

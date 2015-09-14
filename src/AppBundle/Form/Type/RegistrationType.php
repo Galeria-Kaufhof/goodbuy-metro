@@ -50,7 +50,7 @@ class RegistrationType extends AbstractType
                 'conditionsAccepted',
                 'checkbox',
                 [
-                    'label' => 'Ich willige ein, dass meine E-Maildaten für die Aktion "Goodbye Kaufhof" für den
+                    'label' => 'Ich willige ein, dass meine E-Maildaten für die Aktion "Good Buy METRO" für den
 Zeitraum vom 24.-30.09.2015 zum Zwecke der Abwicklung gespeichert und nach Abschluss der Aktion gelöscht werden. *',
                     'mapped' => false,
                     'required' => true,
@@ -61,7 +61,7 @@ Zeitraum vom 24.-30.09.2015 zum Zwecke der Abwicklung gespeichert und nach Absch
                 'optInAccepted',
                 'checkbox',
                 [
-                    'label' => 'Weiterhin willige ich ein, dass meine erhobene E-Mailadresse zu Marketingzwecken und Werbung nur von den folgenden Firmen GALERIA Kaufhof GmbH, real,-, Metro Cash & Carry Deutschland, Media Saturn und der Hudson Bay Company genutzt werden darf.',
+                    'label' => 'Ja, ich möchte auch weiterhin über spannenden Aktionen und Gewinnspiele informiert werden und bin mit der Verwendung meiner erhobenen E-Mail-Adresse zu Marketingzwecken und für die Zusendung von Werbung per E-Mail der folgenden Firmen: GALERIA Kaufhof GmbH, real,- SB Warenhaus GmbH, Metro Cash & Carry Deutschland GmbH, Media Markt E-Business GmbH und der Hudson‘s Bay Company einverstanden. Das Einverständnis kann ich jederzeit widerrufen.',
                     'required' => false,
                     'label_attr' => ['class' => 'non-bold display-inline']
                 ]

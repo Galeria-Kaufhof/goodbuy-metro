@@ -115,7 +115,7 @@ label.non-bold {
     width: 280px;
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], select.form-control {
     width: 280px;
 }
 
