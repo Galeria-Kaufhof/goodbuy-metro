@@ -179,7 +179,7 @@ class DefaultController extends Controller
 
         $this->addFlash(
             'success',
-            'Vielen Dank, Ihre Freischaltung war erfolgreich. Sie erhalten nun eine E-Mail mit Ihren persönlichen Rabattcodes.'
+            'Vielen Dank, Ihre Freischaltung war erfolgreich. Sie erhalten in wenigen Minuten eine E-Mail mit Ihren persönlichen Rabattcodes.'
         );
 
         return $this->render(
