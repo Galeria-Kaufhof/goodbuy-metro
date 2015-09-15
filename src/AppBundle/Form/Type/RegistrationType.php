@@ -37,9 +37,8 @@ class RegistrationType extends AbstractType
                 [
                     'choices' => [
                         Customer::SALESDIVISION_CASH_CARRY => 'METRO Cash & Carry',
-                        Customer::SALESDIVISION_MEDIAMARKT_SATURN => 'Media-Saturn-Holding',
+                        Customer::SALESDIVISION_MEDIAMARKT_SATURN => 'Media-Saturn',
                         Customer::SALESDIVISION_REAL => 'Real',
-                        Customer::SALESDIVISION_REDCOON => 'redcoon',
                         Customer::SALESDIVISION_METRO_GROUP_LOGISTIK => 'METRO Group Logistik'
                     ],
                     'required' => true,
