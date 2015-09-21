@@ -39,7 +39,7 @@ class RegistrationType extends AbstractType
                 'second_options' => ['label' => 'E-Mail Adresse (Wiederholung): *'],
             ])
 
-        ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer (nur Ziffern ohne Leer- oder Trennzeichen!): *', 'required' => true])
+            ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer (nur Ziffern ohne Leer- oder Trennzeichen!): *', 'required' => true])
             ->add(
                 'salesdivision',
                 'choice',
