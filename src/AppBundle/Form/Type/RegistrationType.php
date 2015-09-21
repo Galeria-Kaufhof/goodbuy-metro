@@ -29,7 +29,16 @@ class RegistrationType extends AbstractType
             ->add('address',        'text',  ['label' => 'Straße und Hausnummer:', 'required' => false])
             ->add('zipcode',        'text',  ['label' => 'PLZ:', 'max_length' => 5, 'required' => false])
             ->add('city',           'text',  ['label' => 'Ort:', 'required' => false])
-            ->add('email',          'email', ['label' => 'E-Mail Adresse: *', 'required' => true])
+
+            ->add('email', 'repeated', [
+                'type' => 'email',
+                'invalid_message' => 'Die E-Mailadressen müssen identisch sein.',
+                'required' => true,
+                'options' => ['label' => 'defr'],
+                'first_options'  => ['label' => 'E-Mail Adresse: *'],
+                'second_options' => ['label' => 'E-Mail Adresse (Wiederholung): *'],
+            ])
+
             ->add('employeeNumber', 'text',  ['label' => 'Ihre Mitarbeiternummer (nur Ziffern ohne Leer- oder Trennzeichen!): *', 'required' => true])
             ->add(
                 'salesdivision',
