@@ -530,9 +530,9 @@ Member of METRO GROUP<br>
             [Customer::SALESDIVISION_MEDIAMARKT_SATURN, ' 456 '],
             [Customer::SALESDIVISION_MEDIAMARKT_SATURN, '             456         '],
             [Customer::SALESDIVISION_MEDIAMARKT_SATURN, '456'],
-            [Customer::SALESDIVISION_CASH_CARRY, ' 789 '],
-            [Customer::SALESDIVISION_CASH_CARRY, '             789         '],
-            [Customer::SALESDIVISION_CASH_CARRY, '789'],
+            [Customer::SALESDIVISION_METRO_GROUP_LOGISTIK, ' 789 '],
+            [Customer::SALESDIVISION_METRO_GROUP_LOGISTIK, '             789         '],
+            [Customer::SALESDIVISION_METRO_GROUP_LOGISTIK, '789'],
         ];
     }
 
@@ -573,7 +573,7 @@ Member of METRO GROUP<br>
                 'registration[email][first]'       => 'example@example.org',
                 'registration[email][second]'      => 'example@example.org',
                 'registration[salesdivision]'      => '1',
-                'registration[employeeNumber]'     => '123456',
+                'registration[employeeNumber]'     => '456',
                 'registration[conditionsAccepted]' => '1'
             ]
         );
@@ -586,7 +586,7 @@ Member of METRO GROUP<br>
                 'registration[email][first]'       => 'example2@example.org',
                 'registration[email][second]'      => 'example2@example.org',
                 'registration[salesdivision]'      => '1',
-                'registration[employeeNumber]'     => '123456',
+                'registration[employeeNumber]'     => '456',
                 'registration[conditionsAccepted]' => '1'
             ],
             false
@@ -608,8 +608,8 @@ Member of METRO GROUP<br>
             [
                 'registration[email][first]'       => 'example@example.org',
                 'registration[email][second]'      => 'example@example.org',
-                'registration[salesdivision]'      => '1',
-                'registration[employeeNumber]'     => '012345',
+                'registration[salesdivision]'      => '0',
+                'registration[employeeNumber]'     => '123',
                 'registration[conditionsAccepted]' => '1'
             ]
         );
@@ -622,7 +622,7 @@ Member of METRO GROUP<br>
                 'registration[email][first]'       => 'example2@example.org',
                 'registration[email][second]'      => 'example2@example.org',
                 'registration[salesdivision]'      => '1',
-                'registration[employeeNumber]'     => '012346',
+                'registration[employeeNumber]'     => '456',
                 'registration[conditionsAccepted]' => '1'
             ],
             false
@@ -866,10 +866,10 @@ Member of METRO GROUP<br>
         $crawler = $client->submit(
             $form,
             [
-                'registration[employeeNumber]'     => '12346',
+                'registration[employeeNumber]'     => '123',
                 'registration[email][first]'       => 'example@example.org',
                 'registration[email][second]'      => 'example@example.org',
-                'registration[salesdivision]'      => '1',
+                'registration[salesdivision]'      => '0',
                 'registration[conditionsAccepted]' => '1'
             ]
         );
@@ -935,7 +935,7 @@ Member of METRO GROUP<br>
         $container = $client->getContainer();
         $em = $container->get('doctrine.orm.entity_manager');
         $repo = $em->getRepository('AppBundle\Entity\Customer');
-        $customers = $repo->findBy(['employeeNumber' => '12345']);
+        $customers = $repo->findBy(['employeeNumber' => '456']);
         $this->assertSame(1, sizeof($customers));
 
         $mailCollector = $client->getProfile()->getCollector('swiftmailer');
@@ -953,7 +953,7 @@ Member of METRO GROUP<br>
         $client->submit(
             $form,
             [
-                'registration[employeeNumber]'     => '1234',
+                'registration[employeeNumber]'     => '456',
                 'registration[email][first]'       => 'example@example.org',
                 'registration[email][second]'      => 'example@example.org',
                 'registration[salesdivision]'      => '1',
