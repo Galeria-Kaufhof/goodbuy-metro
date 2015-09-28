@@ -25,7 +25,7 @@ class CouponController extends Controller
             throw new HttpException(403, 'Zugriff verweigert.');
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('\AppBundle\Entity\Customer');
         $customer = $repo->find($customerId);
 
