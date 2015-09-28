@@ -27,7 +27,7 @@ class CouponControllerTest extends WebTestCase
         $customer = new Customer();
         $customer->setEmail('example@example.org');
         $customer->setActivationCode('abc');
-        $customer->setEmployeeNumber('1234567890');
+        $customer->setEmployeeNumber('456');
         $customer->setSalesdivision(Customer::SALESDIVISION_MEDIAMARKT_SATURN);
         $customer->setIsActivated(true);
         $customer->setCouponsHaveBeenSent(true);
